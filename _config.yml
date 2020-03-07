@@ -21,10 +21,10 @@
 title: gCeico - design, programming and a touch of philosophy
 email: ceicoschi.gabriel@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-Javascript, UI/UX and programming – not necessarily in this order. 
-Started as a front-end developer on his own way of exploring new technologies, 
-turned into a designer driven to create eye-catching interfaces. I'm in love with design, 
-literature, photography and art and between those I find myself brewing a cup of coffee or tea.
+  Javascript, UI/UX and programming – not necessarily in this order. 
+  Started as a front-end developer on his own way of exploring new technologies, 
+  turned into a designer driven to create eye-catching interfaces. I'm in love with design, 
+  literature, photography and art and between those I find myself brewing a cup of coffee or tea.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://gceico.me" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: gceico
