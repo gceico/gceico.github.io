@@ -4,15 +4,13 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+Javascript, UI/UX and programming – not necessarily in this order. Started as a front-end developer on his own way of exploring new technologies, turned into a designer driven to create eye-catching interfaces. I'm in love with design, literature, photography and art and between those I find myself brewing a cup of coffee or tea.
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+You can find me code for Minima at GitHub:
+[Instagram](https://www.instagram.com/ceicoschigabriel)/
+[LinkedIn](https://www.linkedin.com/in/gceico)/
+[Facebook](https://www.facebook.com/gceico)/
+[Dribbble](https://dribbble.com/gceico)/
+[GitHub](https://github.com/gceico)/
+[Fiverr](https://www.fiverr.com/gceico)/
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
-
-
-[jekyll-organization]: https://github.com/jekyll
