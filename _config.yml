@@ -30,6 +30,9 @@ url: "https://gceico.me" # the base hostname & protocol for your site, e.g. http
 twitter_username: gceico
 github_username:  gceico
 
+# Google Analytics
+google_analytics: UA-160713212-1
+
 # Build settings
 theme: minima
 plugins:
