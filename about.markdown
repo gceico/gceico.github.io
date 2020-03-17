@@ -13,4 +13,4 @@ You can find me code for Minima at GitHub:
 [Dribbble](https://dribbble.com/gceico)/
 [GitHub](https://github.com/gceico)/
 [Fiverr](https://www.fiverr.com/gceico)/
-
+[Twittter](https://www.twitter.com/gceico)/
