@@ -14,10 +14,10 @@ module.exports = {
     {
       resolve: 'gatsby-source-cosmicjs',
       options: {
-        bucketSlug: process.env.COSMIC_BUCKET,
+        bucketSlug: 'gceico',
         objectTypes: ['posts', 'settings'],
         apiAccess: {
-          read_key: process.env.COSMIC_READ_KEY,
+          read_key: 'sBUztvjoN1lRKxFZDWEoZXEOCVxyo4pu3LZRDIHGtcKvvdxMUG',
         },
         localMedia: true,
       },
@@ -25,7 +25,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: process.env.GATSBY_GOOGLE_ANALYTICS,
+        trackingId: 'UA-160713212-1',
       },
     },
     {
