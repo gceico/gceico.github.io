@@ -1,16 +1,15 @@
-import React from 'react'
-import { Link } from 'gatsby'
-import { StaticQuery, graphql } from 'gatsby'
+import 'typeface-merriweather'
+import 'typeface-montserrat'
+
+import { graphql, Link, StaticQuery } from 'gatsby'
 import BackgroundImage from 'gatsby-background-image'
+import React from 'react'
 
 import cosmicjsLogo from '../../static/cosmicjs.svg'
 import gatsbyLogo from '../../static/gatsby.png'
 import { rhythm, scale } from '../utils/typography'
 
 // Import typefaces
-import 'typeface-montserrat'
-import 'typeface-merriweather'
-
 export default ({ children, location }) => (
   <StaticQuery
     query={graphql`
