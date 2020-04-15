@@ -1,0 +1,31 @@
+import { Link } from 'gatsby'
+import React from 'react'
+
+import { rhythm } from '../utils/typography'
+
+export default function PostHeader({ title }) {
+  return (
+    <h3
+      style={{
+        fontFamily: 'Montserrat, sans-serif',
+        marginTop: 0,
+        marginBottom: rhythm(-1),
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        maxWidth: rhythm(24),
+        paddingTop: `${rhythm(1.5)}`,
+      }}
+    >
+      <Link
+        style={{
+          boxShadow: 'none',
+          textDecoration: 'none',
+          color: 'inherit',
+        }}
+        to={'/'}
+      >
+        {title}
+      </Link>
+    </h3>
+  )
+}

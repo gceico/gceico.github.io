@@ -4,7 +4,6 @@ import React from 'react'
 import Helmet from 'react-helmet'
 
 import Bio from '../components/Bio'
-import Fav from '../components/Fav'
 import Layout from '../components/layout'
 import { rhythm } from '../utils/typography'
 
@@ -15,7 +14,6 @@ function BlogIndex({ data, location }) {
 
   return (
     <Layout location={location}>
-      <Fav />
       <Helmet title={siteTitle} />
       <Bio settings={author} />
       
