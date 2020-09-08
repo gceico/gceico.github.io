@@ -1,111 +1,96 @@
 import { graphql, Link } from 'gatsby'
-import BackgroundImage from 'gatsby-background-image'
 import get from 'lodash/get'
 import React from 'react'
+import { Col, Container, Row } from 'react-grid-system'
 import Helmet from 'react-helmet'
+import styled from 'styled-components'
 
-import Bio from '../components/Bio'
 import Layout from '../components/layout'
-import { rhythm, scale } from '../utils/typography'
+import PostHeader from '../components/PostHeader'
+import theme from '../styles/theme'
 
-function BlogPostTemplate({data, location, pageContext}) {
-  
+const Back = styled(Link)`
+  margin-top: ${theme.spacing(4)};
+  display: block;
+  width: fit-content;
+`
+
+const Root = styled(Container)`
+  max-width: 1640px;
+`
+
+const Prev = styled(Link)``
+const Next = styled(Link)`
+  margin-left: auto;
+  display: block;
+  width: fit-content;
+
+  &:hover {
+    color: ${theme.palette.primary};
+    transition: color 0.25s ease-in;
+  }
+`
+
+const Content = styled.div`
+  & > * {
+    color: ${theme.palette.shades[80]};
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    color: ${theme.palette.shades[90]};
+  }
+`
+
+function BlogPostTemplate({ data, location, pageContext }) {
   const post = data.cosmicjsPosts
   const siteTitle = get(data, 'cosmicjsSettings.metadata.site_title')
   const author = get(data, 'cosmicjsSettings.metadata')
   const { previous, next } = pageContext
 
   return (
-    <Layout location={location}>
-      <style>
-        {`
-          .post-content {
-            text-align: justify;
-          }
-          .post-hero {
-            width: calc(100% + ${rhythm(8)});
-            margin-left: ${rhythm(-4)};
-            height: ${rhythm(18)};
-          }
-          @media (max-width: ${rhythm(32)}) {
-            .post-hero {
-              width: calc(100% + ${rhythm((3 / 4) * 2)});
-              margin-left: ${rhythm(-3 / 4)};
-              height: ${rhythm(13)};
-            }
-          }
-        `}
-      </style>
-      <Helmet title={`${post.title} | ${siteTitle}`} />
-      <div
-        style={{
-          marginTop: rhythm(1.4),
-        }}
-      >
-        <Link to="/">← Back to Posts</Link>
-      </div>
-      <h1
-        style={{
-          marginTop: rhythm(1),
-        }}
-      >
-        {post.title}
-      </h1>
-      <p
-        style={{
-          ...scale(-1 / 5),
-          display: 'block',
-          marginBottom: rhythm(0.6),
-          marginTop: rhythm(-0.6),
-        }}
-      >
-        {post.created}
-      </p>
-      <BackgroundImage
-        Tag="div"
-        className="post-hero"
-        fluid={post.metadata.hero.local.childImageSharp.fluid}
-        backgroundColor={`#007ACC`}
-        style={{
-          marginBottom: rhythm(0.6),
-        }}
-      />
-      <div
-        className="post-content"
-        dangerouslySetInnerHTML={{ __html: post.content }}
-      />
-      <hr
-        style={{
-          marginBottom: rhythm(1),
-        }}
-      />
-      <Bio settings={author} />
+    <Layout location={location} author={author} postLayout>
+      <Root fluid id="head-root">
+        <Helmet>
+          <meta property="og:title" content={`${post.title} | ${siteTitle}`} />
+          <meta name="og:description" content={post.metadata.description} />
+          <meta
+            property="og:image"
+            content={post.metadata.description.imgix_url}
+          />
+        </Helmet>
+        <Row justify="center">
+          <Col lg={6} md={10}>
+            <Back to="/posts">← Back to Posts</Back>
+          </Col>
+        </Row>
+        <PostHeader title={post.title} created={post.created} />
+        <Row justify="center">
+          <Col lg={6} md={10}>
+            <Content dangerouslySetInnerHTML={{ __html: post.content }} />
+          </Col>
+        </Row>
 
-      <ul
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'space-between',
-          listStyle: 'none',
-          padding: 0,
-        }}
-      >
-        {previous && (
-          <li>
-            <Link to={`posts/${previous.slug}`} rel="prev">
-              ← {previous.title}
-            </Link>
-          </li>
-        )}
+        <Row justify="center">
+          <Col lg={3} md={5} sm={6}>
+            {previous && (
+              <Prev to={`/posts/${previous.slug}`} rel="prev">
+                ← {previous.title}
+              </Prev>
+            )}
+          </Col>
 
-        {next && (
-          <li>
-            <Link to={`posts/${next.slug}`} rel="next">
-              {next.title} →
-            </Link>
-          </li>
-        )}
-      </ul>
+          <Col lg={3} md={5} sm={6}>
+            {next && (
+              <Next to={`/posts/${next.slug}`} rel="next">
+                {next.title} →
+              </Next>
+            )}
+          </Col>
+        </Row>
+      </Root>
     </Layout>
   )
 }
@@ -120,14 +105,9 @@ export const pageQuery = graphql`
       title
       created(formatString: "MMMM DD, YYYY")
       metadata {
+        description
         hero {
-          local {
-            childImageSharp {
-              fluid(quality: 90, maxWidth: 1920) {
-                ...GatsbyImageSharpFluid_withWebp
-              }
-            }
-          }
+          imgix_url
         }
       }
     }
@@ -136,6 +116,8 @@ export const pageQuery = graphql`
         site_title
         author_name
         author_bio
+        author_email
+        socialmedia
         author_avatar {
           imgix_url
         }

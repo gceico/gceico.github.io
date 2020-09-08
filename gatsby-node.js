@@ -4,10 +4,10 @@ const path = require('path')
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
-  const indexPage = path.resolve('./src/pages/index.js')
+  const postsPage = path.resolve('./src/pages/posts.js')
   createPage({
     path: `posts`,
-    component: indexPage,
+    component: postsPage,
   })
 
   return new Promise((resolve, reject) => {

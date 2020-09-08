@@ -1,118 +1,67 @@
-import 'typeface-merriweather'
-import 'typeface-montserrat'
-
-import { graphql, StaticQuery } from 'gatsby'
+import get from 'lodash/get'
 import React from 'react'
+import { setConfiguration } from 'react-grid-system'
+import Helmet from 'react-helmet'
+import styled from 'styled-components'
 
-import cosmicjsLogo from '../../static/cosmicjs.svg'
-import gatsbyLogo from '../../static/gatsby.png'
-import { rhythm } from '../utils/typography'
+import theme from '../styles/theme'
 import Fav from './Fav'
+import Footer from './Footer'
 import HomeHeader from './HomeHeader'
-import PostHeader from './PostHeader'
 
-function Layout({ data, children }) {
-  const siteTitle = data.cosmicjsSettings.metadata.site_heading
-  const homgePageHero =
-    data.cosmicjsSettings.metadata.homepage_hero.local.childImageSharp.fluid
-  let header
+setConfiguration({
+  defaultScreenClass: 'md',
+  gutterWidth: 32,
+})
 
-  let rootPath = `/`
-  let postsPath = `/posts`
-  if (typeof __PREFIX_PATHS__ !== `undefined` && __PREFIX_PATHS__) {
-    rootPath = __PATH_PREFIX__ + `/`
-    postsPath = __PATH_PREFIX__ + `/posts`
-  }
+const Root = styled.div`
+  overflow: hidden;
+  background: ${({ postLayout }) =>
+    !postLayout ? theme.palette.fill : theme.palette.lights[100]};
+`
 
-  if (location.pathname === rootPath || location.pathname === postsPath) {
-    header = <HomeHeader hero={homgePageHero} title={siteTitle} />
-  } else {
-    header = <PostHeader title={siteTitle}/>
-  }
+export default function Layout({
+  data,
+  location,
+  siteTitle,
+  siteHeading,
+  author,
+  postLayout = false,
+  children,
+}) {
+  const { pathname } = location
+  const authorName = get(author, 'author_name')
+  const authorBio = get(author, 'author_bio')
+  const authorAvatar = get(author, 'author_avatar')
+
   return (
-    <div>
+    <Root postLayout={postLayout}>
       <Fav />
-      {header}
-      <div
-        style={{
-          marginLeft: 'auto',
-          marginRight: 'auto',
-          maxWidth: rhythm(24),
-          padding: `0 ${rhythm(3 / 4)} ${rhythm(1.5)} ${rhythm(3 / 4)}`,
-          minHeight: 'calc(100vh - 42px)',
-        }}
-      >
-        {children}
-      </div>
-      <footer
-        style={{
-          textAlign: 'center',
-          padding: `0 20px 80px 0`,
-        }}
-      >
-        powered by&nbsp;
-        <a
-          target="_blank"
-          href="https://gatsbyjs.org"
-          style={{
-            color: '#191919',
-            boxShadow: 'none',
-          }}
-        >
-          <img
-            src={gatsbyLogo}
-            alt="Gatsby JS"
-            style={{
-              width: '20px',
-              margin: '0 4px -3px 2px',
-            }}
+      <Helmet>
+        <html lang="en" />
+        <title>{siteTitle}</title>
+        <meta charset="UTF-8" />
+        <meta name="author" content={authorName} />
+        <meta property="og:url" content={location} />
+        <meta property="og:title" content={siteTitle} />
+        <meta name="og:description" content={siteHeading} />
+        <meta property="og:image" content={authorAvatar.imgix_url} />
+        <meta name="theme-color" content={theme.palette.secondary} />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </Helmet>
+      {pathname === '/' && (
+        <header>
+          <HomeHeader
+            title={siteTitle}
+            avatar={authorAvatar}
+            authorBio={authorBio}
           />
-          <strong>Gatsby</strong>
-        </a>
-        &nbsp;and&nbsp;
-        <a
-          target="_blank"
-          href="https://cosmicjs.com"
-          style={{
-            color: '#191919',
-            boxShadow: 'none',
-          }}
-        >
-          <img
-            src={cosmicjsLogo}
-            alt="Cosmic JS"
-            style={{
-              width: '18px',
-              margin: '0 4px -2px 5px',
-            }}
-          />
-          <strong>Cosmic JS</strong>
-        </a>
+        </header>
+      )}
+      <main>{children}</main>
+      <footer>
+        <Footer author={author} postFooter={postLayout} />
       </footer>
-    </div>
+    </Root>
   )
 }
-
-export default ({ children, location }) => (
-  <StaticQuery
-    query={graphql`
-      query LayoutQuery {
-        cosmicjsSettings(slug: { eq: "general" }) {
-          metadata {
-            site_heading
-            homepage_hero {
-              local {
-                childImageSharp {
-                  fluid(quality: 90, maxWidth: 1920) {
-                    ...GatsbyImageSharpFluid_withWebp
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    `}
-    render={data => <Layout data={data}>{children}</Layout>}
-  />
-)
