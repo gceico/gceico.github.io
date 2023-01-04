@@ -52,3 +52,6 @@ You can deploy to Netlify in a few steps using thier CLI. Run the following comm
 npm i -g netlify-cli
 netlify deploy
 ```
+
+## Versions
+- Jan 2023
