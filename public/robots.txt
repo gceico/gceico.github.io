@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gceico.me/sitemap-index.xml

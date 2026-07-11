@@ -1,0 +1,17 @@
+# build output
+dist/
+
+# generated types / caches
+.astro/
+node_modules/
+.cache/
+
+# os / editor
+.DS_Store
+
+# env
+.env
+.env.*
+
+# tooling
+.autopilot/
