@@ -1,57 +1,37 @@
-# Gatsby + Cosmic JS
+# gceico.me
 
-![gatsby-blog-cosmicjs](https://cdn.cosmicjs.com/fe5196f0-42c2-11ea-8d10-df553329919a-gatsby-blog-cosmic.png "The index page of the starter blog")
+Personal site of Gabriel Ceicoschi — blog, portfolio, and CV. Built with [Astro](https://astro.build), all content lives as local markdown in this repo (no external CMS).
 
-> This repo contains an example blog website that is built with [Gatsby](https://www.gatsbyjs.org/), and [Cosmic JS](https://www.cosmicjs.com).
+## Commands
 
-> [See live demo hosted on Netlify](https://gatsby-blog-cosmicjs.netlify.com/)
-
-> Uses the [Cosmic JS Gatsby Source Plugin](https://www.npmjs.com/package/gatsby-source-cosmicjs)
-
-## Prerequisites
-
-- Node (I recommend using v8.2.0 or higher)
-- [Gatsby CLI](https://www.gatsbyjs.org/docs/)
-
-## Install
-
-``` bash
-# Make sure that you have the Gatsby CLI program installed
-npm install --global gatsby-cli
-
-# run from your CLI
-gatsby new gatsby-example-blog https://github.com/cosmicjs/gatsby-blog-cosmicjs
-```
-In `gatsby-config.js` you need to add configuration for your Cosmic JS Bucket
-
-``` javascript
-{
-  resolve: 'gatsby-source-cosmicjs',
-  options: {
-    bucketSlug: '', /* Find this in Your Bucket > Settings > Basic Settings after logging in at https://app.cosmicjs.com/login */
-    objectTypes: ['posts', 'settings'], /* Object types to fetch */
-    apiAccess: {
-      read_key: '', /* Find this in Your Bucket > Settings > API Access after logging in at https://app.cosmicjs.com/login */
-    },
-    localMedia: true /* Optional. If you want to enable local image for Gatsby Image */
-  }
-},
+```sh
+npm install      # install dependencies
+npm run dev      # dev server at localhost:4321
+npm run build    # static build to dist/
+npm run preview  # preview the production build
 ```
 
-Then
+## Content
 
-``` bash
-# Then you can run it by
-cd gatsby-example-blog
-npm run develop
-```
+Everything is a markdown file with frontmatter — edit, commit, done.
 
-## Deploy to Netlify
-You can deploy to Netlify in a few steps using thier CLI. Run the following commands from the root folder.
-```
-npm i -g netlify-cli
-netlify deploy
-```
+| What | Where | Frontmatter |
+|---|---|---|
+| Blog posts | `src/content/posts/*.md` | `title`, `description`, `date`, `hero`, `heroAlt` |
+| Portfolio items | `src/content/portfolios/*.md` | `title`, `date`, `order`, `hero`, `heroAlt` |
+| CV entries | `src/content/experiences/*.md` | `category` (education/experience/skills/tools), `company`, `position`, `period`, `address`, `order` |
+| Site settings & bio | `src/data/site.ts` | — |
 
-## Versions
-- Jan 2023
+Images go in `src/assets/` (referenced from frontmatter, optimized at build) or `public/` (served as-is).
+
+**Add a blog post:** create `src/content/posts/my-post.md` — the filename becomes the URL slug (`/posts/my-post/`). It appears automatically in the posts list, home preview, RSS feed, and sitemap.
+
+**Add a portfolio/CV item:** create the file with an `order` value; lists render in ascending `order`.
+
+## Deploy
+
+GitHub Actions (`.github/workflows/deploy.yml`) builds and deploys to GitHub Pages on push to `master`. The custom domain is set via `public/CNAME`.
+
+## SEO
+
+`src/layouts/BaseLayout.astro` owns all meta tags, Open Graph, canonical URLs, and JSON-LD structured data. The build also emits `sitemap-index.xml`, `rss.xml`, and `public/llms.txt` is served for AI crawlers.

@@ -1,0 +1,58 @@
+/*
+ * Design tokens ported 1-1 from the old Gatsby src/styles/theme.js.
+ *
+ * Original helper functions:
+ *   spacing(n)  = 2^n / 16  rem   (exponential spacing scale, base 2)
+ *   fontSize(n) = 1.5^n     rem   (exponential type scale, ratio 1.5)
+ *
+ * CSS has no runtime pow(), so every n actually referenced by the ported
+ * components is pre-computed below as a static custom property. To add a new
+ * step, compute 2^n/16 (spacing) or 1.5^n (fontSize) and add a variable.
+ */
+:root {
+  /* Palette */
+  --color-primary: #3748a8;
+  --color-secondary: #e25b4a;
+  --color-fill: #1a1e36;
+
+  --shade-100: #1a1e36;
+  --shade-90: #303449;
+  --shade-80: #474b5e;
+  --shade-70: #5e6171;
+  --shade-60: #757886;
+  --shade-50: #8c8e9a;
+
+  --light-100: #fafbfc;
+  --light-90: #f3f4f8;
+  --light-80: #e8e9f0;
+  --light-70: #dddfea;
+  --light-60: #d2d4e2;
+  --light-50: #c6c9db;
+
+  /* Typography families */
+  --font-title: Tinos, Georgia, Cambria, 'Times New Roman', Times, serif;
+  --font-body: 'Varela Round', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, Oxygen, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+  /* spacing(n) = 2^n / 16 rem */
+  --sp-2: 0.25rem;      /* 2^2/16  */
+  --sp-3: 0.5rem;       /* 2^3/16  */
+  --sp-4: 1rem;         /* 2^4/16  */
+  --sp-5: 2rem;         /* 2^5/16  */
+  --sp-5-5: 2.82843rem; /* 2^5.5/16 */
+  --sp-6: 4rem;         /* 2^6/16  */
+  --sp-6-5: 5.65685rem; /* 2^6.5/16 */
+  --sp-7: 8rem;         /* 2^7/16  */
+  --sp-8: 16rem;        /* 2^8/16  */
+  --sp-9: 32rem;        /* 2^9/16  */
+
+  /* fontSize(n) = 1.5^n rem */
+  --fs-2over3: 1.31037rem; /* 1.5^(2/3) */
+  --fs-1: 1.5rem;          /* 1.5^1 */
+  --fs-1-5: 1.83712rem;    /* 1.5^1.5 */
+  --fs-2: 2.25rem;         /* 1.5^2 */
+  --fs-2-5: 2.75568rem;    /* 1.5^2.5 */
+  --fs-3: 3.375rem;        /* 1.5^3 */
+  --fs-3-5: 4.13351rem;    /* 1.5^3.5 */
+  --fs-4: 5.0625rem;       /* 1.5^4 */
+}

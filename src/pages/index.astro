@@ -1,0 +1,69 @@
+---
+import { getCollection } from 'astro:content';
+import { site } from '../data/site';
+import { getSortedPosts } from '../lib/posts';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HomeHeader from '../components/HomeHeader.astro';
+import PostsPreview from '../components/PostsPreview.astro';
+import Portfolios from '../components/Portfolios.astro';
+import CV from '../components/CV.astro';
+
+const posts = await getSortedPosts();
+const portfolios = (await getCollection('portfolios')).sort(
+  (a, b) => a.data.order - b.data.order
+);
+const experiences = await getCollection('experiences');
+
+const title = `${site.author.fullName} — ${site.heading}`;
+const description =
+  'Gabriel Ceicoschi is a Senior Software Engineer at CM.com building AI agents and founder of Aibl.to AI workshops in Tilburg. Blog, portfolio, and CV.';
+
+const person = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.author.fullName,
+  jobTitle: site.heading,
+  worksFor: { '@type': 'Organization', name: 'CM.com', url: 'https://www.cm.com/' },
+  url: site.url,
+  image: new URL('/avatar.jpg', site.url).href,
+  address: { '@type': 'PostalAddress', addressLocality: 'Tilburg', addressCountry: 'NL' },
+  sameAs: [
+    'https://www.linkedin.com/in/gceico/',
+    'https://github.com/gceico',
+    'https://aibl.to',
+  ],
+  knowsAbout: [
+    'AI agents',
+    'Agentic workflows',
+    'Retrieval-augmented generation (RAG)',
+    'TypeScript',
+    'React',
+    'UI/UX',
+  ],
+};
+
+const website = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: site.title,
+  url: site.url,
+  author: { '@type': 'Person', name: site.author.fullName },
+  inLanguage: 'en',
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path="/"
+  structuredData={[person, website]}
+>
+  <header>
+    <HomeHeader />
+  </header>
+  <main>
+    <PostsPreview posts={posts} limit={3} />
+    <Portfolios portfolios={portfolios} />
+    <CV experiences={experiences} />
+  </main>
+</BaseLayout>

@@ -1,0 +1,32 @@
+---
+import { site } from '../../data/site';
+import { getSortedPosts } from '../../lib/posts';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostsList from '../../components/PostsList.astro';
+
+const posts = await getSortedPosts();
+
+const title = `Posts — ${site.author.fullName}`;
+const description =
+  'Writing by Gabriel Ceicoschi on building AI agents, design, and front-end engineering — plus older stories from the early days of the blog.';
+
+const blog = {
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  name: title,
+  url: new URL('/posts/', site.url).href,
+  author: { '@type': 'Person', name: site.author.fullName },
+  blogPost: posts.map((p) => ({
+    '@type': 'BlogPosting',
+    headline: p.data.title,
+    url: new URL(`/posts/${p.id}/`, site.url).href,
+    datePublished: p.data.date.toISOString(),
+  })),
+};
+---
+
+<BaseLayout title={title} description={description} path="/posts" structuredData={blog}>
+  <main>
+    <PostsList posts={posts} />
+  </main>
+</BaseLayout>

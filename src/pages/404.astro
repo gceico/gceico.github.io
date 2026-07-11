@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+
+const title = `404 Not Found — ${site.title}`;
+const description = "You just hit a route that doesn't exist. Head back home to find posts, portfolio, and CV.";
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: title,
+  description,
+  isPartOf: { '@type': 'WebSite', name: site.title, url: site.url },
+};
+---
+
+<BaseLayout title={title} description={description} path="/404" structuredData={structuredData}>
+  <main>
+    <div class="notfound container-fluid">
+      <div class="row justify-center">
+        <div class="col-lg-8">
+          <h1 class="big-title">404 Not Found</h1>
+          <p>
+            You just hit a route that doesn't exist. <a href="/">Go Home</a> instead.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .notfound {
+    min-height: 70vh;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  @media only screen and (max-width: 1024px) { .big-title { font-size: var(--fs-4) !important; } }
+  @media only screen and (max-width: 768px) { .big-title { font-size: var(--fs-3-5) !important; } }
+  @media only screen and (max-width: 576px) { .big-title { font-size: var(--fs-2-5) !important; } }
+</style>

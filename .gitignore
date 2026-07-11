@@ -1,14 +1,17 @@
+# build output
+dist/
+
+# generated types / caches
+.astro/
 node_modules/
-public
-.gatsby-context.js
-.DS_Store
-.intermediate-representation/
 .cache/
-yarn.lock
+
+# os / editor
+.DS_Store
+
+# env
 .env
 .env.*
-_site
-.sass-cache
-.jekyll-cache
-.jekyll-metadata
-vendor
+
+# tooling
+.autopilot/

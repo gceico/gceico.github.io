@@ -1,0 +1,56 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import PostCard from './PostCard.astro';
+
+export interface Props {
+  posts: CollectionEntry<'posts'>[];
+}
+const { posts } = Astro.props;
+---
+
+<div class="list-root container-fluid">
+  <div class="row justify-center">
+    <div class="col-sm-12 col-md-10 col-lg-6">
+      <a class="back" href="/">← Back Home</a>
+    </div>
+  </div>
+  <div class="row justify-center">
+    <div class="col-sm-12 col-md-10 col-lg-6">
+      <p class="small-title">posts.</p>
+    </div>
+  </div>
+  <div class="row justify-center">
+    <div class="col-sm-12 col-md-10 col-lg-6">
+      {posts.map((post) => <PostCard post={post} parallax />)}
+    </div>
+  </div>
+</div>
+
+<style>
+  .list-root {
+    max-width: 1640px;
+    margin-bottom: var(--sp-8);
+  }
+  .back {
+    margin-top: var(--sp-4);
+    margin-bottom: var(--sp-5);
+    display: block;
+    width: fit-content;
+  }
+  .small-title {
+    font-size: var(--fs-3);
+    color: var(--light-90);
+    font-family: var(--font-title) !important;
+    margin-bottom: 1.5rem;
+  }
+  @media only screen and (max-width: 768px) {
+    .small-title { font-size: var(--fs-2-5) !important; }
+  }
+  @media only screen and (max-width: 576px) {
+    .small-title { font-size: var(--fs-1-5) !important; }
+  }
+</style>
+
+<script>
+  import '../scripts/parallax.js';
+</script>
