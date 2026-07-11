@@ -7,4 +7,4 @@ address: ""
 order: 13
 ---
 
-Figma, VSCode, WebStorm, GitLab, GitHub, Jira, Trello, NMP, Docker
+Claude & Claude Code, Codex, Cursor, MCP servers, Figma, VSCode, GitHub, Bun.js, NPM, Docker, Railway, Netlify, Cloudflare

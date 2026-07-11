@@ -7,4 +7,4 @@ address: "Remote"
 order: 7
 ---
 
-I'm available for freelance projects, and right now I have some gigs on [Fiverr](https://www.fiverr.com/users/gceico). I also worked on multiple WordPress websites, e-commerce, and landing pages.
+I'm available for freelance projects. I've worked on multiple WordPress websites, e-commerce stores, and landing pages.

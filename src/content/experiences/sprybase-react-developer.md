@@ -1,10 +1,10 @@
 ---
 category: experience
-company: "Sprybase"
-position: "React Developer"
-period: "2018 to 2020"
+company: "SpryBase"
+position: "Frontend Developer"
+period: "Jan 2018 to Jan 2020"
 address: "Iasi"
 order: 5
 ---
 
-I was in charge of multiple websites, and my biggest project was a live score platform. The project used React, a new technology for me back then. After a time I got familiar with Redux, Hooks, Final-Form, Material-UI, Redux-Form. I also got in love with SASS which made me an unstoppable CSS writer.
+Frontend work for a major live-score platform in Eastern Europe. I built web apps and e-commerce interfaces with **React** and JavaScript, responsive layouts and interactive UI, and worked closely with backend developers to connect REST APIs. This is also where I fell for **SASS** and became an unstoppable CSS writer.

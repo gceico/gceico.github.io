@@ -7,8 +7,10 @@ import '../styles/global.css';
 export interface Props {
   title: string;
   description: string;
-  /** Path (e.g. "/posts/foo") — canonical + og:url are built from site.url + this. */
+  /** Path (e.g. "/posts/foo"), canonical + og:url are built from site.url + this. */
   path: string;
+  /** Override the canonical URL (e.g. for republished posts pointing at the original). */
+  canonicalOverride?: string;
   /** Absolute-or-root path to the share image. Defaults to /thumbnail.jpg */
   image?: string;
   /** Light layout (blog posts) vs dark layout (home / posts list). */
@@ -22,16 +24,19 @@ const {
   title,
   description,
   path,
+  canonicalOverride,
   image = '/thumbnail.jpg',
   postLayout = false,
   ogType = 'website',
   structuredData = null,
 } = Astro.props;
 
-// Pages build as directories (trailing-slash URLs) — keep canonical/og:url on
+// Pages build as directories (trailing-slash URLs), keep canonical/og:url on
 // the resolved form so they never point at a 301.
 const normalizedPath = path.endsWith('/') ? path : `${path}/`;
-const canonical = new URL(normalizedPath, site.url).href;
+const ownUrl = new URL(normalizedPath, site.url).href;
+// Republished posts point canonical at the original; og:url stays on this page.
+const canonical = canonicalOverride ?? ownUrl;
 const ogImage = new URL(image, site.url).href;
 const jsonLd = structuredData
   ? Array.isArray(structuredData)
@@ -57,7 +62,7 @@ const jsonLd = structuredData
     <meta property="og:type" content={ogType} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonical} />
+    <meta property="og:url" content={ownUrl} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:site_name" content={site.title} />
 

@@ -15,23 +15,28 @@ const items = await Promise.all(
 <div class="portfolios-root container-fluid">
   {items.map(({ entry, Content }, index) => {
     const reverse = index % 2 === 1;
+    const hasHero = Boolean(entry.data.hero);
     return (
       <div class:list={['portfolio', 'row', 'align-start', { reverse }]}>
-        <div class="visible-mobile col">
-          <p class="small-title">work.</p>
-          <h1 class="big-title">{entry.data.title}</h1>
-        </div>
-        <div class:list={['hero', 'col-md-12', 'col-lg-7', { reverse }]} data-parallax="32">
-          <Image
-            src={entry.data.hero}
-            alt={entry.data.heroAlt || entry.data.title}
-            widths={[480, 800, 1060]}
-            sizes="(max-width: 768px) 100vw, 58vw"
-            class="hero-img"
-          />
-        </div>
-        <div class="content col-md-12 col-lg-5">
-          <div class="hidden-mobile">
+        {hasHero && (
+          <div class="visible-mobile col">
+            <p class="small-title">work.</p>
+            <h1 class="big-title">{entry.data.title}</h1>
+          </div>
+        )}
+        {hasHero && (
+          <div class:list={['hero', 'col-md-12', 'col-lg-7', { reverse }]} data-parallax="32">
+            <Image
+              src={entry.data.hero}
+              alt={entry.data.heroAlt || entry.data.title}
+              widths={[480, 800, 1060]}
+              sizes="(max-width: 768px) 100vw, 58vw"
+              class="hero-img"
+            />
+          </div>
+        )}
+        <div class:list={['content', 'col-md-12', hasHero ? 'col-lg-5' : 'col-lg-12']}>
+          <div class={hasHero ? 'hidden-mobile' : ''}>
             <p class="small-title">work.</p>
             <h1 class="big-title">{entry.data.title}</h1>
           </div>

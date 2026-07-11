@@ -14,27 +14,30 @@ const portfolios = (await getCollection('portfolios')).sort(
 );
 const experiences = await getCollection('experiences');
 
-const title = `${site.author.fullName} — ${site.heading}`;
+const title = `${site.author.fullName}, ${site.heading}`;
 const description =
-  'Gabriel Ceicoschi is a Senior Software Engineer at CM.com building AI agents and founder of Aibl.to AI workshops in Tilburg. Blog, portfolio, and CV.';
+  'Gabriel Ceicoschi is a Senior Software Engineer building AI agents and founder of Aibl.to AI workshops in Tilburg. Blog, portfolio, and CV.';
 
 const person = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: site.author.fullName,
   jobTitle: site.heading,
-  worksFor: { '@type': 'Organization', name: 'CM.com', url: 'https://www.cm.com/' },
   url: site.url,
-  image: new URL('/avatar.jpg', site.url).href,
+  image: new URL('/avatar-new.jpg', site.url).href,
   address: { '@type': 'PostalAddress', addressLocality: 'Tilburg', addressCountry: 'NL' },
   sameAs: [
     'https://www.linkedin.com/in/gceico/',
+    'https://x.com/gceico',
+    'https://aibl.to/author/gabriel/',
     'https://github.com/gceico',
+    'https://indiepa.ge/gceico',
     'https://aibl.to',
   ],
   knowsAbout: [
     'AI agents',
     'Agentic workflows',
+    'AI Workshops',
     'Retrieval-augmented generation (RAG)',
     'TypeScript',
     'React',

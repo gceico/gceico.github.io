@@ -7,10 +7,10 @@ export async function getSortedPosts(): Promise<CollectionEntry<'posts'>[]> {
   );
 }
 
-// Frontmatter dates parse as UTC midnight — format in UTC so the calendar day
+// Frontmatter dates parse as UTC midnight, format in UTC so the calendar day
 // never shifts with the build machine's timezone.
 
-/** "06 August, 2020" — the original "DD MMMM, YYYY" list format. */
+/** "06 August, 2020", the original "DD MMMM, YYYY" list format. */
 export function formatDateList(date: Date): string {
   return new Intl.DateTimeFormat('en-GB', {
     day: '2-digit',
@@ -22,7 +22,7 @@ export function formatDateList(date: Date): string {
     .replace(/ (\d{4})$/, ', $1');
 }
 
-/** "August 06, 2020" — the original "MMMM DD, YYYY" post-page format. */
+/** "August 06, 2020", the original "MMMM DD, YYYY" post-page format. */
 export function formatDatePost(date: Date): string {
   return new Intl.DateTimeFormat('en-US', {
     month: 'long',

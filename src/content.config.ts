@@ -10,6 +10,11 @@ const posts = defineCollection({
       date: z.date(),
       hero: image(),
       heroAlt: z.string(),
+      // Original publication URL for republished/syndicated posts. When set, the
+      // page emits <link rel="canonical"> pointing here instead of at itself, so
+      // search engines credit the original (LinkedIn, aibl.to) and don't treat
+      // this copy as duplicate content.
+      canonical: z.string().url().optional(),
     }),
 });
 
@@ -20,8 +25,8 @@ const portfolios = defineCollection({
       title: z.string(),
       date: z.date(),
       order: z.number().int(),
-      hero: image(),
-      heroAlt: z.string(),
+      hero: image().optional(),
+      heroAlt: z.string().optional(),
     }),
 });
 

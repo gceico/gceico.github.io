@@ -6,9 +6,9 @@ import PostsList from '../../components/PostsList.astro';
 
 const posts = await getSortedPosts();
 
-const title = `Posts — ${site.author.fullName}`;
+const title = `Posts, ${site.author.fullName}`;
 const description =
-  'Writing by Gabriel Ceicoschi on building AI agents, design, and front-end engineering — plus older stories from the early days of the blog.';
+  'Writing by Gabriel Ceicoschi on building AI agents, design, and front-end engineering, plus older stories from the early days of the blog.';
 
 const blog = {
   '@context': 'https://schema.org',

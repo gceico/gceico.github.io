@@ -24,7 +24,7 @@ const { Content } = await render(post);
 const created = formatDatePost(post.data.date);
 
 const path = `/posts/${post.id}/`;
-const pageTitle = `${post.data.title.trim()} — ${site.title}`;
+const pageTitle = `${post.data.title.trim()}, ${site.title}`;
 const ogImage = new URL(post.data.hero.src, site.url).href;
 
 const blogPosting = {
@@ -62,6 +62,7 @@ const breadcrumb = {
   image={post.data.hero.src}
   postLayout
   ogType="article"
+  canonicalOverride={post.data.canonical}
   structuredData={[blogPosting, breadcrumb]}
 >
   <main>

@@ -25,7 +25,10 @@ const excerpt = truncate(description);
 
 <div class="post">
   <div class="thumbnail" data-parallax={parallax ? '32' : undefined}>
-    <Image src={hero} alt={heroAlt || title} width={128} height={128} class="thumb-img" />
+    <!-- The box is 8rem (128px = up to ~384 device px @3x). object-fit:cover crops
+         this landscape hero to a square, so we need enough height post-crop —
+         request a wide source (768px → ~403px tall) to stay crisp on retina. -->
+    <Image src={hero} alt={heroAlt || title} width={768} class="thumb-img" />
   </div>
   <div class="text">
     <h5><a href={`/posts/${post.id}/`}>{title}</a></h5>

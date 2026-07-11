@@ -7,4 +7,4 @@ address: ""
 order: 11
 ---
 
-HTML5, CSS3, Javascript, Typescript, React, React Native, Redux, Redux-form
+HTML5, CSS3, JavaScript, TypeScript, React, React Native, Vue, Vite, Redux, SASS

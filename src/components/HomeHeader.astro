@@ -14,12 +14,11 @@ import { site } from '../data/site';
 
     <div class="row">
       <div class="card-deck col">
-        <!-- designer -->
+        <!-- ai -->
         <div class="card" data-parallax="32">
           <img class="avatar" alt="Author avatar" src={site.author.avatar} />
-          <span class="before hidden-xs">me:designer</span>
-          <img class="face-mask" src="/svg/designer.svg" alt="A face mask of a designer" />
-          <img class="icon" src="/svg/palette.svg" alt="An icon of a palette" />
+          <span class="before hidden-xs">me:ai_addict</span>
+          <img class="icon" src="/svg/sparkle.svg" alt="An AI sparkle icon" />
         </div>
         <!-- middle (secondary) -->
         <div class="card secondary" data-parallax="32">
@@ -28,8 +27,7 @@ import { site } from '../data/site';
         <!-- developer -->
         <div class="card text-right" data-parallax="32">
           <img class="avatar" alt="Author avatar" src={site.author.avatar} />
-          <span class="before hidden-xs">me:developer</span>
-          <img class="face-mask dev" src="/svg/dev.svg" alt="A face mask of a developer" />
+          <span class="before hidden-xs">me:engineer</span>
           <img class="icon" src="/svg/esc.svg" alt="An icon for a escape key" />
         </div>
       </div>
@@ -153,9 +151,7 @@ import { site } from '../data/site';
     height: 100%;
     position: relative;
     z-index: 1;
-    filter: sepia(50%) hue-rotate(200deg) saturate(250%);
   }
-  .avatar-secondary { filter: sepia(25%) hue-rotate(275deg) saturate(200%); }
 
   .before { color: var(--light-50); }
 
@@ -167,7 +163,7 @@ import { site } from '../data/site';
     margin-bottom: 0;
     z-index: 2;
   }
-  .face-mask.dev { width: 55%; left: 19%; top: 14%; }
+  .face-mask.dev { width: 68%; left: 16%; top: 4%; }
 
   .icon {
     width: 15%;

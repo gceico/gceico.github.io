@@ -1,27 +1,27 @@
-# Gabriel Ceicoschi — gceico.me
+# Gabriel Ceicoschi, gceico.me
 
 > Personal site of Gabriel Ceicoschi: Senior Software Engineer, AI-agent builder, and AI-workshop instructor based in Tilburg, Netherlands. Blog, portfolio, and CV.
 
 ## Who is Gabriel Ceicoschi
 
-Gabriel Ceicoschi is a Senior Software Engineer at CM.com, where he works on HALO — CM.com's platform for building AI agents and automation solutions — focusing on making AI accessible through user experience, privacy, and security (retrieval-augmented generation and agentic workflows). He is also the founder of Aibl.to, running hands-on AI workshops where teams in the Netherlands build AI agents on their real workflows (300+ professionals trained across 20+ companies, including ASML and LocHal Tilburg). He started as a programmer, moved into UI/UX design, and now builds AI agents. Based in Tilburg, Netherlands.
+Gabriel Ceicoschi is a Senior Software Engineer who builds AI agents, focusing on making AI accessible through user experience, privacy, and security (retrieval-augmented generation and agentic workflows). He is the founder of Aibl.to, running hands-on AI workshops where teams in the Netherlands build AI agents on their real workflows (300+ professionals trained across 20+ companies, including ASML and LocHal Tilburg). He started as a programmer, moved into UI/UX design, and now builds AI agents, and he writes about AI on LinkedIn. Based in Tilburg, Netherlands.
 
 ## Site sections
 
 - Home (https://gceico.me/): intro, latest posts, portfolio, and CV.
 - Posts (https://gceico.me/posts): all blog articles.
-- Portfolio: selected projects (Aibl.to AI workshops, "Claude, make it rain" Claude Code spend tracker, Time tracker and CRM, App landing page, Football blog).
+- Portfolio: selected projects (Aibl.to AI workshops, HALO, "Claude, make it rain" Claude Code spend tracker, Freelancer work).
 - CV: education, experience, skills, and tools.
 
 ## Posts
 
-- How to sketch anything? — https://gceico.me/posts/how-to-sketch-anything
-- How I made a blog during Covid-19 Quarantine? — https://gceico.me/posts/how-i-made-a-blog-during-covid-19-quarantine
+- Every Claude Code Trick I know, https://gceico.me/posts/every-claude-code-trick-i-know
+- Saying yes to Claude Code OpenTelemetry, https://gceico.me/posts/saying-yes-to-claude-code-opentelemetry
 
 ## Projects and tools
 
-- claude-make-it-rain — open-source Claude Code spend tracker: https://github.com/gceico/claude-make-it-rain
-- departijwijzer.nl — Dutch political-information chatbot (RAG over party manifestos), co-built with Hugo de Vries.
+- claude-make-it-rain, open-source Claude Code spend tracker: https://github.com/gceico/claude-make-it-rain
+- departijwijzer.nl, Dutch political-information chatbot (RAG over party manifestos), co-built with Hugo de Vries.
 
 ## Contact & social
 
