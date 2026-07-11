@@ -1,0 +1,36 @@
+# Gabriel Ceicoschi, gceico.me
+
+> Personal site of Gabriel Ceicoschi: Senior Software Engineer, AI-agent builder, and AI-workshop instructor based in Tilburg, Netherlands. Blog, portfolio, and CV.
+
+## Who is Gabriel Ceicoschi
+
+Gabriel Ceicoschi is a Senior Software Engineer who builds AI agents, focusing on making AI accessible through user experience, privacy, and security (retrieval-augmented generation and agentic workflows). He is the founder of Aibl.to, running hands-on AI workshops where teams in the Netherlands build AI agents on their real workflows (300+ professionals trained across 20+ companies, including ASML and LocHal Tilburg). He started as a programmer, moved into UI/UX design, and now builds AI agents, and he writes about AI on LinkedIn. Based in Tilburg, Netherlands.
+
+## Site sections
+
+- Home (https://gceico.me/): intro, latest posts, portfolio, and CV.
+- Posts (https://gceico.me/posts): all blog articles.
+- Portfolio: selected projects (Aibl.to AI workshops, HALO, "Claude, make it rain" Claude Code spend tracker, Freelancer work).
+- CV: education, experience, skills, and tools.
+
+## Posts
+
+- Every Claude Code Trick I know, https://gceico.me/posts/every-claude-code-trick-i-know
+- Saying yes to Claude Code OpenTelemetry, https://gceico.me/posts/saying-yes-to-claude-code-opentelemetry
+
+## Projects and tools
+
+- claude-make-it-rain, open-source Claude Code spend tracker: https://github.com/gceico/claude-make-it-rain
+- departijwijzer.nl, Dutch political-information chatbot (RAG over party manifestos), co-built with Hugo de Vries.
+
+## Contact & social
+
+- Email: gabriel@gceico.me
+- LinkedIn: https://www.linkedin.com/in/gceico/
+- GitHub: https://github.com/gceico
+- Aibl.to: https://aibl.to
+
+## Feeds
+
+- RSS: https://gceico.me/rss.xml
+- Sitemap: https://gceico.me/sitemap-index.xml

@@ -1,0 +1,121 @@
+---
+import { render } from 'astro:content';
+import { site } from '../../data/site';
+import { getSortedPosts, formatDatePost } from '../../lib/posts';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostHeader from '../../components/PostHeader.astro';
+
+export async function getStaticPaths() {
+  const posts = await getSortedPosts();
+  return posts.map((post, index) => ({
+    params: { slug: post.id },
+    props: {
+      post,
+      // Match gatsby-node.js exactly (posts are DESC-sorted):
+      previous: index === 0 ? null : posts[index - 1],
+      next: index === posts.length - 1 ? null : posts[index + 1],
+    },
+  }));
+}
+
+const { post, previous, next } = Astro.props;
+const { Content } = await render(post);
+
+const created = formatDatePost(post.data.date);
+
+const path = `/posts/${post.id}/`;
+const pageTitle = `${post.data.title.trim()}, ${site.title}`;
+const ogImage = new URL(post.data.hero.src, site.url).href;
+
+const blogPosting = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.date.toISOString(),
+  image: ogImage,
+  url: new URL(path, site.url).href,
+  mainEntityOfPage: new URL(path, site.url).href,
+  author: {
+    '@type': 'Person',
+    name: site.author.fullName,
+    url: site.url,
+  },
+  publisher: { '@type': 'Person', name: site.author.fullName },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: site.url },
+    { '@type': 'ListItem', position: 2, name: 'Posts', item: new URL('/posts/', site.url).href },
+    { '@type': 'ListItem', position: 3, name: post.data.title, item: new URL(path, site.url).href },
+  ],
+};
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={post.data.description}
+  path={path}
+  image={post.data.hero.src}
+  postLayout
+  ogType="article"
+  canonicalOverride={post.data.canonical}
+  structuredData={[blogPosting, breadcrumb]}
+>
+  <main>
+    <div class="post-root container-fluid" id="head-root">
+      <div class="row justify-center">
+        <div class="col-md-10 col-lg-6">
+          <a class="back" href="/posts/">← Back to Posts</a>
+        </div>
+      </div>
+
+      <PostHeader title={post.data.title} created={created} />
+
+      <div class="row justify-center">
+        <div class="col-md-10 col-lg-6">
+          <article class="content"><Content /></article>
+        </div>
+      </div>
+
+      <div class="row justify-center nav-row">
+        <div class="col-sm-6 col-md-5 col-lg-3">
+          {previous && <a class="prev" href={`/posts/${previous.id}/`} rel="prev">← {previous.data.title}</a>}
+        </div>
+        <div class="col-sm-6 col-md-5 col-lg-3">
+          {next && <a class="next" href={`/posts/${next.id}/`} rel="next">{next.data.title} →</a>}
+        </div>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .post-root { max-width: 1640px; }
+  .back {
+    margin-top: var(--sp-4);
+    display: block;
+    width: fit-content;
+  }
+  .nav-row { margin-top: var(--sp-6); }
+  .next {
+    margin-left: auto;
+    display: block;
+    width: fit-content;
+  }
+  .next:hover { color: var(--color-primary); transition: color 0.25s ease-in; }
+
+  /* Light-page content colors (ported from templates/blog-post.js) */
+  .content :global(*) { color: var(--shade-80); }
+  .content :global(h1),
+  .content :global(h2),
+  .content :global(h3),
+  .content :global(h4),
+  .content :global(h5) { color: var(--shade-90); }
+  .content :global(a) { color: var(--color-secondary); }
+  .content :global(img) { display: block; margin: var(--sp-5) auto var(--sp-3); border-radius: 4px; }
+  .content :global(p) { margin-bottom: 1.5rem; }
+</style>

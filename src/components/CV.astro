@@ -1,0 +1,131 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import { site } from '../data/site';
+
+export interface Props {
+  experiences: CollectionEntry<'experiences'>[];
+}
+const { experiences } = Astro.props;
+
+// Sort by `order` asc within each category; section order is fixed so a
+// low-order entry in a later category can never reshuffle the sections.
+const CATEGORY_ORDER = ['education', 'experience', 'skills', 'tools'];
+const sorted = [...experiences].sort((a, b) => a.data.order - b.data.order);
+
+const groups: { key: string; items: { entry: CollectionEntry<'experiences'>; Content: any }[] }[] = [];
+for (const entry of sorted) {
+  const key = entry.data.category;
+  let group = groups.find((g) => g.key === key);
+  if (!group) {
+    group = { key, items: [] };
+    groups.push(group);
+  }
+  const { Content } = await render(entry);
+  group.items.push({ entry, Content });
+}
+groups.sort((a, b) => {
+  const ai = CATEGORY_ORDER.indexOf(a.key);
+  const bi = CATEGORY_ORDER.indexOf(b.key);
+  return (ai === -1 ? CATEGORY_ORDER.length : ai) - (bi === -1 ? CATEGORY_ORDER.length : bi);
+});
+
+const capitalize = (s: string) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : s);
+---
+
+<div class="cv-root container-fluid">
+  <p class="small-title">cv.</p>
+  <h1 class="big-title">@{site.author.slug}</h1>
+  <div class="separator">&nbsp;</div>
+  <div class="summary row">
+    <div class="col-sm-6 col-md-4 col-lg-3">
+      <h5><strong>{site.author.fullName}</strong></h5>
+    </div>
+    <div class="hidden-xs col-sm-6 col-md-4 col-lg-3">
+      <h5><strong>{site.author.email}</strong></h5>
+    </div>
+    <div class="col-sm-6 col-md-4 col-lg-6">
+      <h5><strong>{site.author.address}</strong></h5>
+    </div>
+  </div>
+
+  {groups.map((group) => (
+    <div class="group row">
+      <div class="col-md-4 col-lg-3">
+        <h5><strong>{capitalize(group.key)}</strong></h5>
+      </div>
+      <div class="col-md-8 col-lg-6">
+        <div class="content">
+          {group.items.map(({ entry, Content }) => (
+            <div class="experience">
+              {(entry.data.company || entry.data.position) && (
+                <h5>
+                  {entry.data.company}
+                  {entry.data.position && ` - ${entry.data.position}`}
+                </h5>
+              )}
+              <div class="desc"><Content /></div>
+              <small>{entry.data.period}</small>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
+
+<style>
+  .cv-root { max-width: 1640px; }
+
+  .small-title {
+    font-size: var(--fs-3);
+    color: var(--light-90);
+    font-family: var(--font-title) !important;
+    margin-bottom: 1.5rem;
+  }
+  @media only screen and (max-width: 768px) {
+    .small-title { font-size: var(--fs-2-5) !important; }
+  }
+  @media only screen and (max-width: 576px) {
+    .small-title { font-size: var(--fs-1-5) !important; }
+  }
+
+  @media only screen and (max-width: 1024px) { .big-title { font-size: var(--fs-2-5) !important; } }
+  @media only screen and (max-width: 768px) { .big-title { font-size: var(--fs-3-5) !important; } }
+  @media only screen and (max-width: 576px) { .big-title { font-size: var(--fs-2-5) !important; } }
+
+  .separator {
+    width: 100%;
+    height: var(--sp-4);
+    position: relative;
+    z-index: 0;
+    border: 2px solid var(--light-50);
+    margin-top: var(--sp-5);
+    margin-bottom: var(--sp-5);
+  }
+  .separator:before {
+    width: 100%;
+    content: '';
+    z-index: -1;
+    height: 100%;
+    display: block;
+    position: absolute;
+    bottom: calc(-1 * var(--sp-2));
+    right: calc(-1 * var(--sp-2));
+    background: var(--color-secondary);
+  }
+
+  .summary {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--sp-5);
+  }
+
+  .content { max-width: 800px; }
+
+  .experience { margin-bottom: var(--sp-6); }
+  @media only screen and (max-width: 576px) {
+    .experience { margin-bottom: var(--sp-5-5); }
+  }
+  .desc :global(a) { color: var(--color-secondary); }
+  .desc :global(p) { color: var(--light-70); }
+</style>

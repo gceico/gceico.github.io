@@ -1,0 +1,44 @@
+name: Deploy to GitHub Pages
+
+on:
+  # `develop` is the default branch; `master` kept to match the old gh-pages
+  # deploy target. Trim this list to wherever the deployable source lives.
+  # NOTE: repo Settings > Pages > Source must be set to "GitHub Actions" —
+  # if it still points at the legacy gh-pages branch, runs succeed but the
+  # live site never updates.
+  push:
+    branches: [develop, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build Astro site
+        uses: withastro/action@v3
+        # with:
+        #   node-version: 20
+        #   package-manager: npm
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,110 @@
+---
+import { Image } from 'astro:assets';
+import { render, type CollectionEntry } from 'astro:content';
+
+export interface Props {
+  portfolios: CollectionEntry<'portfolios'>[];
+}
+const { portfolios } = Astro.props;
+
+const items = await Promise.all(
+  portfolios.map(async (entry) => ({ entry, Content: (await render(entry)).Content }))
+);
+---
+
+<div class="portfolios-root container-fluid">
+  {items.map(({ entry, Content }, index) => {
+    const reverse = index % 2 === 1;
+    const hasHero = Boolean(entry.data.hero);
+    return (
+      <div class:list={['portfolio', 'row', 'align-start', { reverse }]}>
+        {hasHero && (
+          <div class="visible-mobile col">
+            <p class="small-title">work.</p>
+            <h1 class="big-title">{entry.data.title}</h1>
+          </div>
+        )}
+        {hasHero && (
+          <div class:list={['hero', 'col-md-12', 'col-lg-7', { reverse }]} data-parallax="32">
+            <Image
+              src={entry.data.hero}
+              alt={entry.data.heroAlt || entry.data.title}
+              widths={[480, 800, 1060]}
+              sizes="(max-width: 768px) 100vw, 58vw"
+              class="hero-img"
+            />
+          </div>
+        )}
+        <div class:list={['content', 'col-md-12', hasHero ? 'col-lg-5' : 'col-lg-12']}>
+          <div class={hasHero ? 'hidden-mobile' : ''}>
+            <p class="small-title">work.</p>
+            <h1 class="big-title">{entry.data.title}</h1>
+          </div>
+          <div class="desc"><Content /></div>
+        </div>
+      </div>
+    );
+  })}
+</div>
+
+<style>
+  .portfolios-root { max-width: 1640px; }
+
+  .portfolio { margin-bottom: var(--sp-8); }
+  @media only screen and (max-width: 768px) {
+    .portfolio { margin-bottom: var(--sp-6); }
+  }
+
+  .content { margin-top: 0; }
+  @media only screen and (max-width: 768px) {
+    .content { margin-top: var(--sp-4); }
+  }
+
+  .hero {
+    z-index: 0;
+    position: relative;
+    width: 100%;
+    margin-top: var(--sp-7);
+  }
+  .hero:before {
+    width: calc(100% - 30px);
+    content: '';
+    z-index: -1;
+    height: calc(100% - 30px);
+    display: block;
+    position: absolute;
+    border: 2px solid var(--light-50);
+    transform: translate(calc(-1 * var(--sp-6)), calc(-1 * var(--sp-6)));
+  }
+  .hero.reverse:before {
+    transform: translate(var(--sp-6), calc(-1 * var(--sp-6)));
+  }
+  .hero-img { display: block; width: 100%; height: auto; }
+  @media only screen and (max-width: 768px) {
+    .hero { margin-top: var(--sp-4); }
+    .hero:before { display: none; }
+  }
+
+  .small-title {
+    font-size: var(--fs-3);
+    color: var(--light-90);
+    font-family: var(--font-title) !important;
+    margin-bottom: 1.5rem;
+  }
+  @media only screen and (max-width: 768px) {
+    .small-title { font-size: var(--fs-2-5) !important; }
+  }
+  @media only screen and (max-width: 576px) {
+    .small-title { font-size: var(--fs-1-5) !important; }
+  }
+
+  @media only screen and (max-width: 1024px) { .big-title { font-size: var(--fs-2-5) !important; } }
+  @media only screen and (max-width: 768px) { .big-title { font-size: var(--fs-3-5) !important; } }
+  @media only screen and (max-width: 576px) { .big-title { font-size: var(--fs-2-5) !important; } }
+
+  .desc :global(a) { color: var(--color-secondary); }
+</style>
+
+<script>
+  import '../scripts/parallax.js';
+</script>

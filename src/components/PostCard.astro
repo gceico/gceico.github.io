@@ -1,0 +1,89 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import { formatDateList } from '../lib/posts';
+
+export interface Props {
+  post: CollectionEntry<'posts'>;
+  parallax?: boolean;
+}
+const { post, parallax = false } = Astro.props;
+
+const { title, description, hero, heroAlt } = post.data;
+
+const created = formatDateList(post.data.date);
+
+// lodash truncate: length 90, separator /,? +/  (break on last word boundary)
+function truncate(str: string, length = 90) {
+  if (str.length <= length) return str;
+  const slice = str.slice(0, length - 3);
+  const cut = slice.replace(/,?\s+\S*$/, '');
+  return (cut || slice) + '...';
+}
+const excerpt = truncate(description);
+---
+
+<div class="post">
+  <div class="thumbnail" data-parallax={parallax ? '32' : undefined}>
+    <!-- The box is 8rem (128px = up to ~384 device px @3x). object-fit:cover crops
+         this landscape hero to a square, so we need enough height post-crop —
+         request a wide source (768px → ~403px tall) to stay crisp on retina. -->
+    <Image src={hero} alt={heroAlt || title} width={768} class="thumb-img" />
+  </div>
+  <div class="text">
+    <h5><a href={`/posts/${post.id}/`}>{title}</a></h5>
+    <div>{excerpt}</div>
+    <small>{created}</small>
+  </div>
+</div>
+
+<style>
+  .post {
+    display: flex;
+    max-width: 720px;
+    margin-bottom: var(--sp-6);
+  }
+  .post:last-child { margin-bottom: 0; }
+  @media only screen and (max-width: 768px) {
+    .post { padding-left: var(--sp-4); }
+  }
+
+  .thumbnail {
+    z-index: 0;
+    position: relative;
+    width: var(--sp-7);
+    height: var(--sp-7);
+    min-width: var(--sp-7);
+    margin-top: var(--sp-4);
+  }
+  .thumbnail:before {
+    width: 100%;
+    content: '';
+    z-index: -1;
+    height: 100%;
+    display: block;
+    position: absolute;
+    transform: translate(calc(-1 * var(--sp-4)), calc(-1 * var(--sp-4)));
+    border: 2px solid var(--light-50);
+  }
+  .thumb-img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+  @media only screen and (max-width: 576px) {
+    .thumbnail { width: var(--sp-6-5); height: var(--sp-6-5); }
+    .thumbnail:before {
+      width: var(--sp-6-5); height: var(--sp-6-5);
+      transform: translate(calc(-1 * var(--sp-4)), calc(-1 * var(--sp-4)));
+    }
+    .thumb-img { width: var(--sp-6-5) !important; height: var(--sp-6-5) !important; }
+  }
+
+  .text {
+    margin-left: var(--sp-5);
+    display: flex;
+    flex-direction: column;
+  }
+  .text > * { margin-bottom: var(--sp-3); }
+  .text > *:last-child { margin-top: auto; margin-bottom: 0; }
+  @media only screen and (max-width: 576px) {
+    .text { margin-left: 0; }
+  }
+</style>
