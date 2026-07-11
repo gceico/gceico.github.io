@@ -1,13 +1,12 @@
 name: Deploy to GitHub Pages
 
 on:
-  # `develop` is the default branch; `master` kept to match the old gh-pages
-  # deploy target. Trim this list to wherever the deployable source lives.
-  # NOTE: repo Settings > Pages > Source must be set to "GitHub Actions" —
-  # if it still points at the legacy gh-pages branch, runs succeed but the
-  # live site never updates.
+  # `main` is the default branch and the deployable source.
+  # NOTE: repo Settings > Pages > Source must be set to "GitHub Actions"
+  # (build_type "workflow"), not a branch, or runs succeed but the live
+  # site never updates.
   push:
-    branches: [develop, master]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
