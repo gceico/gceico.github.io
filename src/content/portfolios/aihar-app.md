@@ -2,7 +2,7 @@
 title: "Aihar.app"
 date: 2026-07-20
 order: 4
-hero: ../../assets/portfolios/placeholder.png
+hero: ../../assets/portfolios/ai-har-app-demo.png
 heroAlt: "AIHAR, sell your Claude Code harness as one MCP URL"
 ---
 

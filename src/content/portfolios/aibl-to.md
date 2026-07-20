@@ -2,7 +2,7 @@
 title: "Aibl.to, AI workshops"
 date: 2024-01-15
 order: 1
-hero: ../../assets/portfolios/aibl.png
+hero: ../../assets/portfolios/aibl-to-demo.png
 heroAlt: "Aibl.to website banner, You know your work. We know how to automate it."
 ---
 

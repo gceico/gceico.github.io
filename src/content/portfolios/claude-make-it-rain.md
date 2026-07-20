@@ -2,7 +2,7 @@
 title: "Claude, make it rain"
 date: 2025-11-01
 order: 3
-hero: ../../assets/portfolios/claude-make-it-rain.png
+hero: ../../assets/portfolios/ai-har-app-demo.png
 heroAlt: "claude-make-it-rain, Claude Code spend tracker for your menu bar"
 ---
 
