@@ -4,7 +4,7 @@ description: "Picture a Monday morning, first day back from leave. You open a te
 date: 2026-05-27
 hero: ../../assets/posts/otel-consent.png
 heroAlt: "Saying Yes to Claude Code OpenTelemetry — a telemetry broadcast motif on a dark card"
-canonical: https://www.linkedin.com/pulse/saying-yes-claude-code-opentelemetry-gabriel-ceicoschi-kji3e/
+canonical: https://aibl.to/blog/claude-code-opentelemetry-not-only-cost-tracking/
 ---
 
 ### The scene
