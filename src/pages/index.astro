@@ -7,6 +7,7 @@ import HomeHeader from '../components/HomeHeader.astro';
 import PostsPreview from '../components/PostsPreview.astro';
 import Portfolios from '../components/Portfolios.astro';
 import CV from '../components/CV.astro';
+import FAQ from '../components/FAQ.astro';
 
 const posts = await getSortedPosts();
 const portfolios = (await getCollection('portfolios')).sort(
@@ -53,13 +54,73 @@ const website = {
   author: { '@type': 'Person', name: site.author.fullName },
   inLanguage: 'en',
 };
+
+const organization = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'Aibl.to',
+  url: 'https://aibl.to',
+  founder: { '@type': 'Person', name: site.author.fullName },
+  areaServed: { '@type': 'Country', name: 'Netherlands' },
+  description:
+    'Hands-on AI workshops for teams in the Netherlands. Teams build AI agents on their real workflows and own what they build.',
+};
+
+const portfolioList = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: `${site.author.fullName} — Portfolio`,
+  itemListElement: portfolios.map((p, i) => ({
+    '@type': 'CreativeWork',
+    position: i + 1,
+    name: p.data.title,
+    description: p.data.description,
+  })),
+};
+
+const faqs = [
+  {
+    question: 'What does Gabriel Ceicoschi do?',
+    answer:
+      'Gabriel is a Senior Software Engineer who builds AI agents, focused on making AI accessible through user experience, privacy, and security.',
+  },
+  {
+    question: 'What is Aibl.to?',
+    answer:
+      "Aibl.to is Gabriel's own venture: hands-on AI workshops where teams in the Netherlands build AI agents on their real workflows. 300+ professionals trained across 20+ companies, including ASML and LocHal Tilburg.",
+  },
+  {
+    question: 'Where is Gabriel based?',
+    answer: 'Tilburg, Netherlands.',
+  },
+  {
+    question: 'Does Gabriel take freelance or consulting work?',
+    answer:
+      'Yes. Freelance web/app projects (WordPress, e-commerce, dashboards) alongside AI agent and workshop work — see the Portfolio and CV sections above.',
+  },
+  {
+    question: 'What tools does Gabriel build?',
+    answer:
+      'Open-source developer tooling for the Claude Code ecosystem, such as the "Claude, make it rain" spend tracker and Aihar.app, plus AI agent platforms and RAG-based tools.',
+  },
+];
+
+const faq = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(({ question, answer }) => ({
+    '@type': 'Question',
+    name: question,
+    acceptedAnswer: { '@type': 'Answer', text: answer },
+  })),
+};
 ---
 
 <BaseLayout
   title={title}
   description={description}
   path="/"
-  structuredData={[person, website]}
+  structuredData={[person, website, organization, portfolioList, faq]}
 >
   <header>
     <HomeHeader />
@@ -68,5 +129,6 @@ const website = {
     <PostsPreview posts={posts} limit={3} />
     <Portfolios portfolios={portfolios} />
     <CV experiences={experiences} />
+    <FAQ faqs={faqs} />
   </main>
 </BaseLayout>

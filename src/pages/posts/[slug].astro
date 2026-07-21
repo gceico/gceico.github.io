@@ -41,7 +41,11 @@ const blogPosting = {
     name: site.author.fullName,
     url: site.url,
   },
-  publisher: { '@type': 'Person', name: site.author.fullName },
+  publisher: {
+    '@type': 'Person',
+    name: site.author.fullName,
+    logo: { '@type': 'ImageObject', url: new URL('/logo.svg', site.url).href },
+  },
 };
 
 const breadcrumb = {

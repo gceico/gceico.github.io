@@ -23,6 +23,7 @@ const portfolios = defineCollection({
   schema: ({ image }) =>
     z.object({
       title: z.string(),
+      description: z.string(),
       date: z.date(),
       order: z.number().int(),
       hero: image().optional(),

@@ -1,5 +1,6 @@
 ---
 title: "Aibl.to, AI workshops"
+description: "Hands-on AI workshops for teams in the Netherlands. 300+ professionals trained across 20+ companies, including ASML and LocHal Tilburg."
 date: 2024-01-15
 order: 1
 hero: ../../assets/portfolios/aibl-to-demo.png

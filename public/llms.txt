@@ -10,7 +10,7 @@ Gabriel Ceicoschi is a Senior Software Engineer who builds AI agents, focusing o
 
 - Home (https://gceico.me/): intro, latest posts, portfolio, and CV.
 - Posts (https://gceico.me/posts): all blog articles.
-- Portfolio: selected projects (Aibl.to AI workshops, HALO, "Claude, make it rain" Claude Code spend tracker, Freelancer work).
+- Portfolio: selected projects (Aibl.to AI workshops, AI Agent Platform, Aihar.app, "Claude, make it rain" Claude Code spend tracker, Freelancer work).
 - CV: education, experience, skills, and tools.
 
 ## Posts

@@ -1,5 +1,6 @@
 ---
 title: "AI Agent Platform"
+description: "An AI agent platform for messaging-based customer support, built on retrieval-augmented generation and agentic workflows teams can trust in production."
 date: 2024-06-01
 order: 2
 hero: ../../assets/portfolios/placeholder.png

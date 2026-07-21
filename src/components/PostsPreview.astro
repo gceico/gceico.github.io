@@ -14,7 +14,7 @@ const list = typeof limit === 'number' ? posts.slice(0, limit) : posts;
   <div class="row">
     <div class="title col-md-12 col-lg-5">
       <p class="small-title">posts.</p>
-      <h1 class="big-title">Find<br class="hidden-mobile" /> latest stories</h1>
+      <h2 class="big-title">Find<br class="hidden-mobile" /> latest stories</h2>
     </div>
     <div class="posts-list col-md-12 col-lg-6">
       {list.map((post) => <PostCard post={post} parallax />)}

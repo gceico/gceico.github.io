@@ -7,7 +7,7 @@ import { site } from '../data/site';
     <div class="row">
       <div class="col-sm-12 col-md-12 col-lg-8">
         <img class="logo" src="/logo.svg" alt="gceico logo" />
-        <p class="small-title">who.</p>
+        <h1 class="small-title">who.<span class="visually-hidden"> {site.author.fullName}, {site.heading} building AI agents in Tilburg, Netherlands.</span></h1>
         <div class="about" set:html={site.author.bioHtml} />
       </div>
     </div>
@@ -38,7 +38,7 @@ import { site } from '../data/site';
       <div class="square secondary" data-parallax="32"></div>
     </div>
 
-    <img class="bg-logo" src="/logo.svg" alt="Logo" />
+    <img class="bg-logo" src="/logo.svg" alt="" />
   </div>
 </div>
 

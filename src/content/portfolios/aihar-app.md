@@ -1,5 +1,6 @@
 ---
 title: "Aihar.app"
+description: "Aihar.app turns Claude Code plugins into productized, sandboxed MCP endpoints creators can sell through one signed URL."
 date: 2026-07-20
 order: 4
 hero: ../../assets/portfolios/ai-har-app-demo.png

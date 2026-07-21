@@ -1,5 +1,6 @@
 ---
 title: "Claude, make it rain"
+description: "Open-source menu-bar app that tracks Claude Code spend in real time, built with TypeScript, live at aiburn.dev."
 date: 2025-11-01
 order: 3
 hero: ../../assets/portfolios/make-it-rain-demo.png

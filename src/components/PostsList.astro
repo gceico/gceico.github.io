@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import PostCard from './PostCard.astro';
+import { site } from '../data/site';
 
 export interface Props {
   posts: CollectionEntry<'posts'>[];
@@ -16,7 +17,7 @@ const { posts } = Astro.props;
   </div>
   <div class="row justify-center">
     <div class="col-sm-12 col-md-10 col-lg-6">
-      <p class="small-title">posts.</p>
+      <h1 class="small-title">posts.<span class="visually-hidden"> Blog posts by {site.author.fullName}</span></h1>
     </div>
   </div>
   <div class="row justify-center">

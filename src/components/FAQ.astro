@@ -1,0 +1,48 @@
+---
+export interface Props {
+  faqs: { question: string; answer: string }[];
+}
+const { faqs } = Astro.props;
+---
+
+<div class="faq-root container-fluid">
+  <p class="small-title">faq.</p>
+  <h2 class="big-title">Frequently asked</h2>
+  <div class="items">
+    {faqs.map(({ question, answer }) => (
+      <div class="item">
+        <h3>{question}</h3>
+        <p>{answer}</p>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .faq-root { max-width: 1640px; margin-bottom: var(--sp-8); }
+  @media only screen and (max-width: 768px) {
+    .faq-root { margin-bottom: var(--sp-6); }
+  }
+
+  .small-title {
+    font-size: var(--fs-3);
+    color: var(--light-90);
+    font-family: var(--font-title) !important;
+    margin-bottom: 1.5rem;
+  }
+  @media only screen and (max-width: 768px) {
+    .small-title { font-size: var(--fs-2-5) !important; }
+  }
+  @media only screen and (max-width: 576px) {
+    .small-title { font-size: var(--fs-1-5) !important; }
+  }
+
+  @media only screen and (max-width: 1024px) { .big-title { font-size: var(--fs-2-5) !important; } }
+  @media only screen and (max-width: 768px) { .big-title { font-size: var(--fs-3-5) !important; } }
+  @media only screen and (max-width: 576px) { .big-title { font-size: var(--fs-2-5) !important; } }
+
+  .items { max-width: 800px; margin-top: var(--sp-5); }
+  .item { margin-bottom: var(--sp-5-5); }
+  .item h3 { color: var(--light-90); margin-bottom: var(--sp-2); }
+  .item p { color: var(--light-70); }
+</style>

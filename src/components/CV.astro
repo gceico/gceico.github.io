@@ -34,34 +34,34 @@ const capitalize = (s: string) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : 
 
 <div class="cv-root container-fluid">
   <p class="small-title">cv.</p>
-  <h1 class="big-title">@{site.author.slug}</h1>
+  <h2 class="big-title">@{site.author.slug}</h2>
   <div class="separator">&nbsp;</div>
   <div class="summary row">
     <div class="col-sm-6 col-md-4 col-lg-3">
-      <h5><strong>{site.author.fullName}</strong></h5>
+      <p><strong>{site.author.fullName}</strong></p>
     </div>
     <div class="hidden-xs col-sm-6 col-md-4 col-lg-3">
-      <h5><strong>{site.author.email}</strong></h5>
+      <p><strong>{site.author.email}</strong></p>
     </div>
     <div class="col-sm-6 col-md-4 col-lg-6">
-      <h5><strong>{site.author.address}</strong></h5>
+      <p><strong>{site.author.address}</strong></p>
     </div>
   </div>
 
   {groups.map((group) => (
     <div class="group row">
       <div class="col-md-4 col-lg-3">
-        <h5><strong>{capitalize(group.key)}</strong></h5>
+        <h3><strong>{capitalize(group.key)}</strong></h3>
       </div>
       <div class="col-md-8 col-lg-6">
         <div class="content">
           {group.items.map(({ entry, Content }) => (
             <div class="experience">
               {(entry.data.company || entry.data.position) && (
-                <h5>
+                <h4>
                   {entry.data.company}
                   {entry.data.position && ` - ${entry.data.position}`}
-                </h5>
+                </h4>
               )}
               <div class="desc"><Content /></div>
               <small>{entry.data.period}</small>

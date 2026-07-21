@@ -1,5 +1,6 @@
 ---
 title: "Freelancer work"
+description: "Freelance projects: WordPress sites, e-commerce stores, landing pages, and a time-tracking/CRM dashboard."
 date: 2020-04-24
 order: 5
 ---
