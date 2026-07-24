@@ -8,20 +8,25 @@ const { faqs } = Astro.props;
 <div class="faq-root container-fluid">
   <p class="small-title">faq.</p>
   <h2 class="big-title">Frequently asked</h2>
-  <div class="items">
-    {faqs.map(({ question, answer }) => (
-      <div class="item">
-        <h3>{question}</h3>
-        <p>{answer}</p>
+  <div class="row">
+    <div class="col-md-4 col-lg-3"></div>
+    <div class="col-md-8 col-lg-6">
+      <div class="items">
+        {faqs.map(({ question, answer }) => (
+          <div class="item">
+            <h3>{question}</h3>
+            <p>{answer}</p>
+          </div>
+        ))}
       </div>
-    ))}
+    </div>
   </div>
 </div>
 
 <style>
-  .faq-root { max-width: 1640px; margin-bottom: var(--sp-8); }
+  .faq-root { max-width: 1640px; margin-top: var(--sp-8); margin-bottom: var(--sp-8); }
   @media only screen and (max-width: 768px) {
-    .faq-root { margin-bottom: var(--sp-6); }
+    .faq-root { margin-top: var(--sp-6); margin-bottom: var(--sp-6); }
   }
 
   .small-title {
@@ -41,8 +46,9 @@ const { faqs } = Astro.props;
   @media only screen and (max-width: 768px) { .big-title { font-size: var(--fs-3-5) !important; } }
   @media only screen and (max-width: 576px) { .big-title { font-size: var(--fs-2-5) !important; } }
 
-  .items { max-width: 800px; margin-top: var(--sp-5); }
-  .item { margin-bottom: var(--sp-5-5); }
-  .item h3 { color: var(--light-90); margin-bottom: var(--sp-2); }
+  .row { margin-top: var(--sp-5); }
+  .items { max-width: 800px; }
+  .item { margin-bottom: var(--sp-6); }
+  .item h3 { font-size: var(--fs-1); color: var(--light-100); margin-bottom: 1.5rem; }
   .item p { color: var(--light-70); }
 </style>
