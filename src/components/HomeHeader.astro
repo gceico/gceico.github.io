@@ -1,5 +1,7 @@
 ---
+import { Image } from 'astro:assets';
 import { site } from '../data/site';
+import avatar from '../assets/avatar.jpg';
 ---
 
 <div>
@@ -16,17 +18,17 @@ import { site } from '../data/site';
       <div class="card-deck col">
         <!-- ai -->
         <div class="card" data-parallax="32">
-          <img class="avatar" alt="Author avatar" src={site.author.avatar} />
+          <Image class="avatar" alt="Author avatar" src={avatar} width={340} height={510} />
           <span class="before hidden-xs">me:ai_addict</span>
           <img class="icon" src="/svg/sparkle.svg" alt="An AI sparkle icon" />
         </div>
         <!-- middle (secondary) -->
         <div class="card secondary" data-parallax="32">
-          <img class="avatar avatar-secondary" alt="Author avatar" src={site.author.avatar} />
+          <Image class="avatar avatar-secondary" alt="Author avatar" src={avatar} width={340} height={510} />
         </div>
         <!-- developer -->
         <div class="card text-right" data-parallax="32">
-          <img class="avatar" alt="Author avatar" src={site.author.avatar} />
+          <Image class="avatar" alt="Author avatar" src={avatar} width={340} height={510} />
           <span class="before hidden-xs">me:engineer</span>
           <img class="icon" src="/svg/esc.svg" alt="An icon for a escape key" />
         </div>
@@ -104,12 +106,14 @@ import { site } from '../data/site';
     margin-top: calc(-1 * var(--sp-5));
     margin-left: calc(-1 * var(--sp-6));
   }
-  @media only screen and (max-width: 576px) {
+  @media only screen and (max-width: 767px) {
     .card-deck {
       padding-bottom: 0;
       margin-top: var(--sp-5);
       padding-top: var(--sp-5);
       justify-content: center;
+      flex-wrap: wrap;
+      row-gap: var(--sp-4);
     }
     .card-deck > div:first-child { margin-top: 0; margin-right: var(--sp-4); }
     .card-deck > div:last-child { margin-top: 0; margin-left: var(--sp-4); }
@@ -134,7 +138,7 @@ import { site } from '../data/site';
     background: var(--color-primary);
   }
   .card.secondary:before { background: var(--color-secondary); }
-  @media only screen and (max-width: 576px) {
+  @media only screen and (max-width: 767px) {
     .card {
       margin: 0;
       width: calc(0.5 * var(--sp-9));

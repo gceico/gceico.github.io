@@ -5,10 +5,17 @@ const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 if (!reduce) {
   const els = Array.from(document.querySelectorAll('[data-parallax]'));
   if (els.length) {
-    let tx = 0, ty = 0, cx = 0, cy = 0;
+    const EPSILON = 0.01;
+    let tx = 0, ty = 0, cx = 0, cy = 0, running = false;
+    const startTick = () => {
+      if (running) return;
+      running = true;
+      requestAnimationFrame(tick);
+    };
     window.addEventListener('pointermove', (e) => {
       tx = e.clientX - window.innerWidth / 2;
       ty = e.clientY - window.innerHeight / 2;
+      startTick();
     }, { passive: true });
     const tick = () => {
       cx += (tx - cx) * 0.08;
@@ -17,8 +24,11 @@ if (!reduce) {
         const s = Number(el.dataset.parallax) || 32;
         el.style.transform = `translate3d(${cx / s}px, ${cy / s}px, 0)`;
       }
+      if (Math.abs(tx - cx) < EPSILON && Math.abs(ty - cy) < EPSILON) {
+        running = false;
+        return;
+      }
       requestAnimationFrame(tick);
     };
-    requestAnimationFrame(tick);
   }
 }

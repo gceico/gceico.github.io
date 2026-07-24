@@ -91,6 +91,15 @@ a:hover, a:active {
   opacity: 0.8;
 }
 
+/* Post pages sit on a light background; the dark-bg accent fails AA there. */
+.root.post a {
+  color: var(--color-secondary-on-light);
+}
+.root.post a:hover, .root.post a:active {
+  color: var(--color-secondary-on-light);
+  opacity: 0.8;
+}
+
 img { max-width: 100%; height: auto; }
 
 ul, ol { margin-bottom: 1.5rem; padding-left: 1.5rem; }
