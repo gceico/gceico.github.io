@@ -2,7 +2,7 @@
 title: "Saying yes to Claude Code OpenTelemetry"
 description: "Picture a Monday morning, first day back from leave. You open a terminal. Claude Code shows a consent prompt you have never seen before, asking you to accept a managed setting, an employer set OpenTelemetry endpoint Claude Code will export telemetry to. Yes, I trust these settings. Or No, exit Claude Code. Red pill or blue pill, with no third option for 'let me read what I'm signing first.'"
 date: 2026-05-27
-hero: ../../assets/posts/otel-consent.png
+hero: ../../assets/posts/otel-consent.jpg
 heroAlt: "Saying Yes to Claude Code OpenTelemetry — a telemetry broadcast motif on a dark card"
 canonical: https://aibl.to/blog/claude-code-opentelemetry-not-only-cost-tracking/
 ---

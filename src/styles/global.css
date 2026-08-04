@@ -61,11 +61,16 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-title);
   font-weight: 400;
   color: var(--light-100);
-  line-height: 1.1;
+  line-height: var(--heading-leading-normal);
+  letter-spacing: normal;
   margin-bottom: 1.5rem;
 }
 
-h1 { font-size: var(--fs-4); font-weight: 700; }
+/* The two largest steps read as display type: tighter leading + tracking,
+   matching Interface Craft's treatment of its headline sizes. */
+h1, h2 { line-height: var(--heading-leading-display); letter-spacing: var(--heading-tracking-display); }
+
+h1 { font-size: var(--fs-4); font-weight: 600; }
 h2 { font-size: var(--fs-3-5); }
 h3 { font-size: var(--fs-3); color: var(--light-90); }
 h4 { font-size: var(--fs-2); }
