@@ -3,11 +3,14 @@
  *
  * Original helper functions:
  *   spacing(n)  = 2^n / 16  rem   (exponential spacing scale, base 2)
- *   fontSize(n) = 1.5^n     rem   (exponential type scale, ratio 1.5)
  *
  * CSS has no runtime pow(), so every n actually referenced by the ported
  * components is pre-computed below as a static custom property. To add a new
- * step, compute 2^n/16 (spacing) or 1.5^n (fontSize) and add a variable.
+ * step, compute 2^n/16 (spacing) and add a variable.
+ *
+ * Type scale (--fs-*) was rebalanced from the original 1.5^n exponential
+ * scale (h1 = 81px) to a restrained editorial scale, same variable names so
+ * every component that already references them picks up the new rhythm.
  */
 :root {
   /* Palette */
@@ -31,9 +34,16 @@
   --light-50: #c6c9db;
 
   /* Typography families */
-  --font-title: Tinos, Georgia, Cambria, 'Times New Roman', Times, serif;
+  --font-title: 'Source Serif 4', Georgia, Cambria, 'Times New Roman', Times, serif;
   --font-body: 'Varela Round', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, Oxygen, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+  /* line-height / letter-spacing rhythm for headings, size-tiered like
+     Interface Craft's library (tight+dense on display sizes, looser on
+     small ones): 1.1 / -0.02em for the two biggest steps, 1.25 / normal below. */
+  --heading-leading-display: 1.1;
+  --heading-leading-normal: 1.25;
+  --heading-tracking-display: -0.02em;
 
   /* spacing(n) = 2^n / 16 rem */
   --sp-2: 0.25rem;      /* 2^2/16  */
@@ -47,13 +57,13 @@
   --sp-8: 16rem;        /* 2^8/16  */
   --sp-9: 32rem;        /* 2^9/16  */
 
-  /* fontSize(n) = 1.5^n rem */
-  --fs-2over3: 1.31037rem; /* 1.5^(2/3) */
-  --fs-1: 1.5rem;          /* 1.5^1 */
-  --fs-1-5: 1.83712rem;    /* 1.5^1.5 */
-  --fs-2: 2.25rem;         /* 1.5^2 */
-  --fs-2-5: 2.75568rem;    /* 1.5^2.5 */
-  --fs-3: 3.375rem;        /* 1.5^3 */
-  --fs-3-5: 4.13351rem;    /* 1.5^3.5 */
-  --fs-4: 5.0625rem;       /* 1.5^4 */
+  /* Restrained editorial type scale (px equivalents in comments) */
+  --fs-2over3: 0.9375rem; /* 15px - meta / small text */
+  --fs-1: 1.125rem;       /* 18px - lead paragraph */
+  --fs-1-5: 1.375rem;     /* 22px - smallest heading step (mobile) */
+  --fs-2: 1.75rem;        /* 28px */
+  --fs-2-5: 2.125rem;     /* 34px */
+  --fs-3: 2.5rem;         /* 40px */
+  --fs-3-5: 2.75rem;      /* 44px */
+  --fs-4: 3rem;           /* 48px - largest heading step (h1 / post title) */
 }
