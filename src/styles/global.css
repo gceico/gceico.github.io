@@ -50,7 +50,8 @@ html {
 
 body {
   font-family: var(--font-body);
-  line-height: 1.5;
+  font-size: 1.0625rem;
+  line-height: 1.65;
   color: var(--light-100);
   -webkit-font-smoothing: antialiased;
   word-wrap: break-word;
@@ -59,7 +60,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-title);
-  font-weight: 400;
+  font-weight: 500;
   color: var(--light-100);
   line-height: var(--heading-leading-normal);
   letter-spacing: normal;
@@ -70,7 +71,7 @@ h1, h2, h3, h4, h5, h6 {
    matching Interface Craft's treatment of its headline sizes. */
 h1, h2 { line-height: var(--heading-leading-display); letter-spacing: var(--heading-tracking-display); }
 
-h1 { font-size: var(--fs-4); font-weight: 600; }
+h1 { font-size: var(--fs-4); font-weight: 500; }
 h2 { font-size: var(--fs-3-5); }
 h3 { font-size: var(--fs-3); color: var(--light-90); }
 h4 { font-size: var(--fs-2); }

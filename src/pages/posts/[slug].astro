@@ -1,5 +1,6 @@
 ---
 import { render } from 'astro:content';
+import { Image } from 'astro:assets';
 import { site } from '../../data/site';
 import { getSortedPosts, formatDatePost } from '../../lib/posts';
 import BaseLayout from '../../layouts/BaseLayout.astro';
@@ -81,6 +82,14 @@ const breadcrumb = {
 
       <div class="row justify-center">
         <div class="col-md-10 col-lg-6">
+          <Image
+            src={post.data.hero}
+            alt={post.data.heroAlt || post.data.title}
+            width={1360}
+            class="hero"
+            loading="eager"
+            fetchpriority="high"
+          />
           <article class="content"><Content /></article>
         </div>
       </div>
@@ -104,6 +113,15 @@ const breadcrumb = {
     display: block;
     width: fit-content;
   }
+  /* Hero sits under the header separator, matching the text column width. */
+  .hero {
+    display: block;
+    width: 100%;
+    max-width: 680px;
+    height: auto;
+    margin: 0 auto var(--sp-6);
+    border-radius: 4px;
+  }
   .nav-row { margin-top: var(--sp-6); }
   .next {
     margin-left: auto;
@@ -121,6 +139,8 @@ const breadcrumb = {
   .content :global(h5) { color: var(--shade-90); }
   .content :global(a) { color: var(--color-secondary-on-light); }
   .content :global(img) { display: block; margin: var(--sp-5) auto var(--sp-3); border-radius: 4px; }
+  .content :global(p),
+  .content :global(li) { font-size: 1.125rem; line-height: 1.7; }
   .content :global(p) { margin-bottom: 1.5rem; }
 
   /* Cap the reading measure so lines stay ~70-80 characters even on very
