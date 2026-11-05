@@ -56,11 +56,14 @@ body {
   -webkit-font-smoothing: antialiased;
   word-wrap: break-word;
   font-kerning: normal;
+  text-rendering: optimizeLegibility;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-title);
   font-weight: 500;
+  font-optical-sizing: auto;
+  text-wrap: balance;
   color: var(--light-100);
   line-height: var(--heading-leading-normal);
   letter-spacing: normal;
@@ -71,13 +74,14 @@ h1, h2, h3, h4, h5, h6 {
    matching Interface Craft's treatment of its headline sizes. */
 h1, h2 { line-height: var(--heading-leading-display); letter-spacing: var(--heading-tracking-display); }
 
-h1 { font-size: var(--fs-4); font-weight: 500; }
+h1 { font-size: var(--fs-4); font-weight: 600; }
 h2 { font-size: var(--fs-3-5); }
 h3 { font-size: var(--fs-3); color: var(--light-90); }
 h4 { font-size: var(--fs-2); }
 h5 { font-size: var(--fs-1); }
 
 p {
+  text-wrap: pretty;
   color: var(--light-70);
   margin-bottom: 1.5rem;
 }

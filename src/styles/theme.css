@@ -34,8 +34,9 @@
   --light-50: #c6c9db;
 
   /* Typography families */
-  --font-title: 'Sentient', Georgia, Cambria, 'Times New Roman', Times, serif;
-  --font-body: 'Sentient', Georgia, Cambria, 'Times New Roman', Times, serif;
+  --font-title: 'Source Serif 4', Georgia, Cambria, 'Times New Roman', Times, serif;
+  --font-body: 'Varela Round', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, Oxygen, 'Open Sans', 'Helvetica Neue', sans-serif;
 
   /* line-height / letter-spacing rhythm for headings, size-tiered like
      Interface Craft's library (tight+dense on display sizes, looser on
