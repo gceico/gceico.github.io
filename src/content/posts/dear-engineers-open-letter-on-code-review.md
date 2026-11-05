@@ -1,6 +1,6 @@
 ---
 title: "Dear engineers: an open letter on code review"
-description: "A colleague told me he doubted anyone could consume a 12k LOC PR, or find a bug in it. He's right. This is my answer to him, and to you: let the AI hunt the bugs, and tell me what you really think about the direction."
+description: "A colleague told me he doubted anyone could consume a 13k LOC PR, or find a bug in it. He's right. This is my answer to him, and to you: let the AI hunt the bugs, and tell me what you really think about the direction."
 date: 2026-11-05
 hero: ../../assets/posts/open-letter-code-review.webp
 heroAlt: "A merged pull request titled 'feat: add the awesome new feature' with 33 commits, 10 files changed and +13,157 lines"
@@ -8,7 +8,7 @@ heroAlt: "A merged pull request titled 'feat: add the awesome new feature' with 
 
 Dear engineers,
 
-A colleague wrote to me honestly last week, about a PR I opened. He said he seriously doubted a dev can consume such a PR. 12k LOC. He cared about our collaboration and wanted to know what I think is best for us and for the team.
+A colleague wrote to me honestly last week, about a PR I opened. He said he seriously doubted a dev can consume such a PR. 13k LOC. He cared about our collaboration and wanted to know what I think is best for us and for the team.
 
 Of course, he said, he could just ask an AI to review it for him. But that's not the point, is it? He saw some decisions he'd do differently, like putting types in the same files as the TypeScript, where he prefers separate ones. But is it worth requesting the change? He doubts himself nowadays that everything is just prompting.
 
